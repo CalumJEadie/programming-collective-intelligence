@@ -1,3 +1,7 @@
+"""
+Programming Collective Intelligence - Chapter 9
+"""
+
 class matchrow:
   def __init__(self,row,allnum=False):
     if allnum:
