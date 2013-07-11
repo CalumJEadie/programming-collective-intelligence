@@ -78,28 +78,29 @@ def matchcount(interest1,interest2):
     if v in l2: x+=1
   return x
 
-yahookey="YOUR API KEY"
-from xml.dom.minidom import parseString
-from urllib import urlopen,quote_plus
+# yahookey="YOUR API KEY"
+# from xml.dom.minidom import parseString
+# from urllib import urlopen,quote_plus
 
-loc_cache={}
-def getlocation(address):
-  if address in loc_cache: return loc_cache[address]
-  data=urlopen('http://api.local.yahoo.com/MapsService/V1/'+\
-               'geocode?appid=%s&location=%s' %
-               (yahookey,quote_plus(address))).read()
-  doc=parseString(data)
-  lat=doc.getElementsByTagName('Latitude')[0].firstChild.nodeValue
-  long=doc.getElementsByTagName('Longitude')[0].firstChild.nodeValue  
-  loc_cache[address]=(float(lat),float(long))
-  return loc_cache[address]
+# loc_cache={}
+# def getlocation(address):
+#   if address in loc_cache: return loc_cache[address]
+#   data=urlopen('http://api.local.yahoo.com/MapsService/V1/'+\
+#                'geocode?appid=%s&location=%s' %
+#                (yahookey,quote_plus(address))).read()
+#   doc=parseString(data)
+#   lat=doc.getElementsByTagName('Latitude')[0].firstChild.nodeValue
+#   long=doc.getElementsByTagName('Longitude')[0].firstChild.nodeValue  
+#   loc_cache[address]=(float(lat),float(long))
+#   return loc_cache[address]
 
 def milesdistance(a1,a2):
-  lat1,long1=getlocation(a1)
-  lat2,long2=getlocation(a2)
-  latdif=69.1*(lat2-lat1)
-  longdif=53.0*(long2-long1)
-  return (latdif**2+longdif**2)**.5
+  # lat1,long1=getlocation(a1)
+  # lat2,long2=getlocation(a2)
+  # latdif=69.1*(lat2-lat1)
+  # longdif=53.0*(long2-long1)
+  # return (latdif**2+longdif**2)**.5
+  return 0
 
 def loadnumerical():
   oldrows=loadmatch('matchmaker.csv')
@@ -126,8 +127,17 @@ def scaledata(rows):
   
   # Create a function that scales data
   def scaleinput(d):
-     return [(d[i]-low[i])/(high[i]-low[i])
-            for i in range(len(low))]
+     # return [(d[i]-low[i])/(high[i]-low[i])
+     #        for i in range(len(low))]
+
+     # Adjust to handle range=0
+      d_scaled = []
+      for i in range(len(low)):
+        if high[i] - low[i] != 0:
+          d_scaled.append((d[i]-low[i])/(high[i]-low[i]))
+        else:
+          d_scaled.append(high[i])
+      return d_scaled
   
   # Scale all the data
   newrows=[matchrow(scaleinput(row.data)+[row.match])
