@@ -90,3 +90,42 @@ So having **skiing** in common may give 1 point and **skiiing** and **snowboardi
 ### Locations
 
     locations --> geographical distance
+
+## Scaling the data
+
+By converting category variables into numerical variables now have
+a set of variables with very different ranges.
+
+Need to scale the ranges, e.g. onto [0,1]
+
+## Understanding Kernel Methods
+
+Can not always divide a data set up into either side of a straight
+line (linear classification). However, can often transform the
+dataset such that this is possible.
+
+## Kernel Trick
+
+Finding a dividing line when working with real data sets can
+involve transforming to a much higher dimension space.
+
+Replace dot product with a different function gives what the dot
+product would give if the data had been transformed into a
+different space.
+
+e.g. radial-basis function
+
+## Support-Vector machines
+
+Points near the dividing line are called support-vectors.
+
+Applications:
+
+- classifying facial expressions
+- detecting intruders using military datasets
+- predicting the structure of proteins from  their sequences
+- handwriting recognition
+- determining the potential damage during earthquakes
+
+## LIBSVM
+

@@ -1,6 +1,11 @@
-import svmc
-from svmc import C_SVC, NU_SVC, ONE_CLASS, EPSILON_SVR, NU_SVR
-from svmc import LINEAR, POLY, RBF, SIGMOID
+import sys
+sys.path.append("/Users/calum/tmp/libsvm-3.17/python")
+
+# Fix import
+# import svmc
+import svm as svmc
+from svm import C_SVC, NU_SVC, ONE_CLASS, EPSILON_SVR, NU_SVR
+from svm import LINEAR, POLY, RBF, SIGMOID
 from math import exp, fabs
 
 def _int_array(seq):
